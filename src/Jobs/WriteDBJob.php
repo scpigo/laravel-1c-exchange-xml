@@ -5,7 +5,7 @@ namespace Scpigo\Laravel1cXml\Jobs;
 use Scpigo\SystemJob\Jobs\SystemJobAbstract;
 use Scpigo\Laravel1cXml\Helpers\XmlExchangeManager;
 
-class ReadXmlJob extends SystemJobAbstract
+class WriteDBJob extends SystemJobAbstract
 {
     /**
      * Execute the job.
@@ -16,6 +16,6 @@ class ReadXmlJob extends SystemJobAbstract
     {
         $manager = new XmlExchangeManager;
 
-        $manager->exchanger('orders')->read();
+        $manager->exchanger('orders')->write();
     }
 }

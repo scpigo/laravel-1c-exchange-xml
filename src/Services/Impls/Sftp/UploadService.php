@@ -12,9 +12,9 @@ class UploadService implements UploadInterface {
         string $server_path,
         string $filename
     ) {
-        $xml = Storage::disk('sftp')->get($server_path.$filename);
+        $xml = Storage::disk($local_disk_driver)->get($local_path.$filename);
 
-        if (Storage::disk($local_disk_driver)->put($local_path.$filename, $xml)) {
+        if (Storage::disk('sftp')->put($server_path.$filename, $xml)) {
             return true;
         };
 

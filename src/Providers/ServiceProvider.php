@@ -2,29 +2,37 @@
 
 namespace Scpigo\Laravel1cXml\Providers;
 
-use Scpigo\Laravel1cXml\Commands\ReadXML;
+use Scpigo\Laravel1cXml\Commands\WriteDB;
+use Scpigo\Laravel1cXml\Commands\DownloadXML;
 use Scpigo\Laravel1cXml\Commands\UploadXML;
 use Scpigo\Laravel1cXml\Components\Impls\XmlExchanger;
 use Scpigo\Laravel1cXml\Components\Interfaces\XmlExchangerInterface;
-use Scpigo\Laravel1cXml\Jobs\ReadXmlJob;
+use Scpigo\Laravel1cXml\Jobs\WriteDBJob;
+use Scpigo\Laravel1cXml\Jobs\DownloadXmlJob;
 use Scpigo\Laravel1cXml\Jobs\UploadXmlJob;
+
+use Scpigo\Laravel1cXml\Services\Impls\Post\DownloadService as RequestDownloadService;
+use Scpigo\Laravel1cXml\Services\Impls\Sftp\DownloadService as SftpDownloadService;
 use Scpigo\Laravel1cXml\Services\Impls\Post\UploadService as RequestUploadService;
 use Scpigo\Laravel1cXml\Services\Impls\Sftp\UploadService as SftpUploadService;
-use Scpigo\Laravel1cXml\Drivers\Mongo\Services\ReadService as MongoReadService;
+
+use Scpigo\Laravel1cXml\Drivers\Mongo\Services\WriteService as MongoWriteService;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider { 
     public $bindings = [
         XmlExchangerInterface::class => XmlExchanger::class,
 
-        '1C_UPLOAD_XML' => UploadXmlJob::class,
-        '1C_READ_XML' => ReadXmlJob::class
+        '1C_XML_DOWNLOAD' => DownloadXmlJob::class,
+        '1C_XML_UPLOAD' => UploadXmlJob::class,
+        '1C_XML_WRITE_DB' => WriteDBJob::class
     ];
 
     public function boot() { 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                DownloadXML::class,
                 UploadXML::class,
-                ReadXML::class
+                WriteDB::class,
             ]);
         }
 
@@ -37,9 +45,12 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     public function register() 
     {
-        $this->app->alias(RequestUploadService::class, 'post');
-        $this->app->alias(SftpUploadService::class, 'sftp');
+        $this->app->alias(RequestDownloadService::class, 'download_post');
+        $this->app->alias(SftpDownloadService::class, 'download_sftp');
 
-        $this->app->alias(MongoReadService::class, 'mongo');
+        $this->app->alias(RequestUploadService::class, 'upload_post');
+        $this->app->alias(SftpUploadService::class, 'upload_sftp');
+
+        $this->app->alias(MongoWriteService::class, 'mongo');
     }
 }

@@ -7,12 +7,12 @@ use Illuminate\Support\Facades\Storage;
 use Mtownsend\XmlToArray\XmlToArray;
 use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\OrderListTransformer;
 use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\OrderModelTransformer;
-use Scpigo\Laravel1cXml\Services\Interfaces\ReadInterface;
+use Scpigo\Laravel1cXml\Services\Interfaces\WriteInterface;
 use Spatie\Fractal\Facades\Fractal;
 use Spatie\Fractalistic\ArraySerializer;
 
-class ReadService implements ReadInterface {
-    public function read(
+class WriteService implements WriteInterface {
+    public function write(
         string $local_disk_driver, 
         string $local_path,
         string $filename

@@ -11,21 +11,21 @@ use Illuminate\Support\Carbon;
 use Scpigo\SystemJob\Dto\SystemJobSchedulerDto;
 use Scpigo\SystemJob\Facades\SystemJobManagerFacade as SystemJobManager;
 
-class UploadXML extends Command
+class WriteDB extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'xml:upload';
+    protected $signature = 'xml:write';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Uploads xml file';
+    protected $description = 'Writes xml file';
 
     /**
      * Create a new command instance.
@@ -46,7 +46,7 @@ class UploadXML extends Command
     {
         $dto = new SystemJobSchedulerDto;
 
-        $dto->action = '1C_XML_UPLOAD';
+        $dto->action = '1C_XML_WRITE_DB';
         $dto->scheduled_at =  Carbon::createFromFormat('Y-m-d H:i:s', gmdate(now()));
 
         $data = SystemJobManager::scheduler()->schedule($dto);
@@ -57,7 +57,7 @@ class UploadXML extends Command
             return 0;
         }
 
-        $this->info('Запланирована отправка XML файла');
+        $this->info('Запланирована запись XML файла');
 
         return 0;
     }

@@ -11,21 +11,21 @@ use Illuminate\Support\Carbon;
 use Scpigo\SystemJob\Dto\SystemJobSchedulerDto;
 use Scpigo\SystemJob\Facades\SystemJobManagerFacade as SystemJobManager;
 
-class ReadXML extends Command
+class DownloadXML extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'xml:read';
+    protected $signature = 'xml:download';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Reads xml file';
+    protected $description = 'Downloads xml file';
 
     /**
      * Create a new command instance.
@@ -46,7 +46,7 @@ class ReadXML extends Command
     {
         $dto = new SystemJobSchedulerDto;
 
-        $dto->action = '1C_READ_XML';
+        $dto->action = '1C_XML_DOWNLOAD';
         $dto->scheduled_at =  Carbon::createFromFormat('Y-m-d H:i:s', gmdate(now()));
 
         $data = SystemJobManager::scheduler()->schedule($dto);
@@ -57,7 +57,7 @@ class ReadXML extends Command
             return 0;
         }
 
-        $this->info('Запланировано чтение XML файла');
+        $this->info('Запланировано получение XML файла');
 
         return 0;
     }

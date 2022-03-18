@@ -13,12 +13,14 @@ class UploadService implements UploadInterface {
         string $server_path,
         string $filename
     ) {
-        $xml = Http::get($server_path);
+        $xml = Storage::disk($local_disk_driver)->get($local_path.$filename);
 
-        if (Storage::disk($local_disk_driver)->put($local_path.$filename, $xml)) {
-            return true;
+        $response = Http::post($server_path, $xml);
+
+        if ($response->failed()) {
+            return false;
         };
 
-        return false;
+        return true;
     }
 }
