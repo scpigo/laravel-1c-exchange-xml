@@ -1,6 +1,6 @@
 <?php
 
-namespace Scpigo\Laravel1cXml\Services\Impls\Request;
+namespace Scpigo\Laravel1cXml\Services\Impls\Post;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;

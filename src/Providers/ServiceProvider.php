@@ -8,7 +8,7 @@ use Scpigo\Laravel1cXml\Components\Impls\XmlExchanger;
 use Scpigo\Laravel1cXml\Components\Interfaces\XmlExchangerInterface;
 use Scpigo\Laravel1cXml\Jobs\ReadXmlJob;
 use Scpigo\Laravel1cXml\Jobs\UploadXmlJob;
-use Scpigo\Laravel1cXml\Services\Impls\Request\UploadService as RequestUploadService;
+use Scpigo\Laravel1cXml\Services\Impls\Post\UploadService as RequestUploadService;
 use Scpigo\Laravel1cXml\Services\Impls\Sftp\UploadService as SftpUploadService;
 use Scpigo\Laravel1cXml\Drivers\Mongo\Services\ReadService as MongoReadService;
 
@@ -37,7 +37,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     public function register() 
     {
-        $this->app->alias(RequestUploadService::class, 'request');
+        $this->app->alias(RequestUploadService::class, 'post');
         $this->app->alias(SftpUploadService::class, 'sftp');
 
         $this->app->alias(MongoReadService::class, 'mongo');

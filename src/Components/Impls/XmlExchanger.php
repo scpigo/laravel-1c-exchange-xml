@@ -7,20 +7,31 @@ use Scpigo\Laravel1cXml\Components\Interfaces\XmlExchangerInterface;
 use Scpigo\Laravel1cXml\Services\Interfaces\ReadInterface;
 
 class XmlExchanger implements XmlExchangerInterface {
-    private $uploadService;
-    private $readService;
+    private UploadInterface $uploadService;
+    private ReadInterface $readService;
+    private string $exchanger;
 
-    public function __construct(UploadInterface $uploadService, ReadInterface $readService)
+    public function __construct(UploadInterface $uploadService, ReadInterface $readService, string $exchanger)
     {
         $this->uploadService = $uploadService;
         $this->readService = $readService;
+        $this->exchanger = $exchanger;
     }
 
-    public function upload(string $path, string $filename) {
-        return $this->uploadService->upload($path, $filename);
+    public function upload() {
+        return $this->uploadService->upload(
+            config('1c.exchangers.'. $this->exchanger .'.local_disk_driver'),
+            config('1c.exchangers.'. $this->exchanger .'.local_path'),
+            config('1c.exchangers.'. $this->exchanger .'.server_path'),
+            config('1c.exchangers.'. $this->exchanger .'.filename')
+        );
     }
 
-    public function read(string $path, string $filename) {
-        return $this->readService->read($path, $filename);
+    public function read() {
+        return $this->readService->read(
+            config('1c.exchangers.'. $this->exchanger .'.local_disk_driver'),
+            config('1c.exchangers.'. $this->exchanger .'.local_path'),
+            config('1c.exchangers.'. $this->exchanger .'.filename')
+        );
     }
 }
