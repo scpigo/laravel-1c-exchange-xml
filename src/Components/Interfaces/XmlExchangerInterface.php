@@ -6,4 +6,5 @@ interface XmlExchangerInterface {
     public function download();
     public function upload();
     public function write();
+    public function generate();
 }

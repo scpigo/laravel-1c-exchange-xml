@@ -1,6 +1,6 @@
 <?php
 
-namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers;
+namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write;
 
 use League\Fractal\TransformerAbstract;
 use Illuminate\Support\Arr;
@@ -24,9 +24,10 @@ class ProductsModelTransformer extends TransformerAbstract {
         $model->vendor_code = Arr::get($data, 'vendor_code');
         $model->name = Arr::get($data, 'name');
         $model->base_unit = Arr::get($data, 'base_unit');
-        $model->role = Arr::get($data, 'role');
-        $model->currency = Arr::get($data, 'currency');
-        $model->rate = Arr::get($data, 'rate');
+        $model->unit_price = Arr::get($data, 'unit_price');
+        $model->quantity = Arr::get($data, 'quantity');
+        $model->cost = Arr::get($data, 'cost');
+        $model->attributes_values = Arr::get($data, 'attributes_values');
 
         return [
             'product' => $model

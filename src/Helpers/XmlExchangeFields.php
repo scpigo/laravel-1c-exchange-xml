@@ -26,4 +26,5 @@ class XmlExchangeFields {
     public const COST = 'Сумма';
     public const FULL_NAME = 'ПолноеНаименование';
     public const VALUE = 'Значение';
+    public const DOCUMENT = 'Документ';
 }

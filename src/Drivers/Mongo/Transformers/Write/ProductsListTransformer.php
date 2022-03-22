@@ -1,6 +1,6 @@
 <?php
 
-namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers;
+namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write;
 
 use League\Fractal\TransformerAbstract;
 use Scpigo\Laravel1cXml\Helpers\XmlExchangeFields;
@@ -17,9 +17,9 @@ class ProductsListTransformer extends TransformerAbstract {
             'vendor_code' => Arr::get($data, XmlExchangeFields::VENDOR_CODE),
             'name' => Arr::get($data, XmlExchangeFields::NAME),
             'base_unit' => Arr::get($data, XmlExchangeFields::BASE_UNIT),
-            'role' => Arr::get($data, XmlExchangeFields::ROLE),
-            'currency' => Arr::get($data, XmlExchangeFields::CURRENCY),
-            'rate' => Arr::get($data, XmlExchangeFields::RATE),
+            'unit_price' => Arr::get($data, XmlExchangeFields::UNIT_PRICE),
+            'quantity' => Arr::get($data, XmlExchangeFields::QUANTITY),
+            'cost' => Arr::get($data, XmlExchangeFields::COST),
 	    ];
     }
 

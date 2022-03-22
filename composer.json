@@ -8,6 +8,7 @@
         "mtownsend/xml-to-array": "^2.0",
         "spatie/array-to-xml": "^2.16",
         "scpigo/laravel-system-job": "@dev",
+        "scpigo/core": "@dev",
         "spatie/laravel-fractal": "^5.8"
     },
     "autoload": {
@@ -25,6 +26,10 @@
         {
             "type": "path",
             "url": "packages/scpigo/laravel-system-job"
+        },
+        {
+            "type": "path",
+            "url": "packages/scpigo/core"
         }
     ]
 

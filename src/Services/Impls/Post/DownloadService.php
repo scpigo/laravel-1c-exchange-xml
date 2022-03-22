@@ -4,18 +4,15 @@ namespace Scpigo\Laravel1cXml\Services\Impls\Post;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
+use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\DownloadInterface;
 
-class DownloadService implements DownloadInterface {
-    public function download(
-        string $local_disk_driver, 
-        string $local_path,
-        string $server_path,
-        string $filename
-    ) {
-        $xml = Http::get($server_path);
+class DownloadService extends ExchangerAbstract implements DownloadInterface {
+    public function download() {
+        $xml = Http::get($this->config->server_path);
 
-        if (Storage::disk($local_disk_driver)->put($local_path.$filename, $xml)) {
+        if (Storage::disk($this->config->local_disk_driver)->put($this->config->local_path.$this->config->filename, $xml)) {
             return true;
         };
 

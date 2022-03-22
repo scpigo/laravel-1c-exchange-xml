@@ -3,18 +3,15 @@
 namespace Scpigo\Laravel1cXml\Services\Impls\Sftp;
 
 use Illuminate\Support\Facades\Storage;
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
+use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\DownloadInterface;
 
-class DownloadService implements DownloadInterface {
-    public function download(
-        string $local_disk_driver, 
-        string $local_path,
-        string $server_path,
-        string $filename
-    ) {
-        $xml = Storage::disk('sftp')->get($server_path.$filename);
+class DownloadService extends ExchangerAbstract implements DownloadInterface {
+    public function download() {
+        $xml = Storage::disk('sftp')->get($this->config->server_path.$this->config->filename);
 
-        if (Storage::disk($local_disk_driver)->put($local_path.$filename, $xml)) {
+        if (Storage::disk($this->config->local_disk_driver)->put($this->config->local_path.$this->config->filename, $xml)) {
             return true;
         };
 

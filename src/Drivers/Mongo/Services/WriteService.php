@@ -5,19 +5,17 @@ namespace Scpigo\Laravel1cXml\Drivers\Mongo\Services;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Mtownsend\XmlToArray\XmlToArray;
-use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\OrderListTransformer;
-use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\OrderModelTransformer;
+use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write\OrderListTransformer;
+use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write\OrderModelTransformer;
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
+use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\WriteInterface;
 use Spatie\Fractal\Facades\Fractal;
 use Spatie\Fractalistic\ArraySerializer;
 
-class WriteService implements WriteInterface {
-    public function write(
-        string $local_disk_driver, 
-        string $local_path,
-        string $filename
-    ) {
-        $xml = Storage::disk($local_disk_driver)->get($local_path.$filename);
+class WriteService extends ExchangerAbstract implements WriteInterface {
+    public function write() {
+        $xml = Storage::disk($this->config->local_disk_driver)->get($this->config->local_path.$this->config->filename);
 
         $data = XmlToArray::convert($xml);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers;
+namespace Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write;
 
 use League\Fractal\TransformerAbstract;
 use Scpigo\Laravel1cXml\Helpers\XmlExchangeFields;

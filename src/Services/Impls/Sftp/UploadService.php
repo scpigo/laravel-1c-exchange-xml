@@ -3,18 +3,15 @@
 namespace Scpigo\Laravel1cXml\Services\Impls\Sftp;
 
 use Illuminate\Support\Facades\Storage;
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
+use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\UploadInterface;
 
-class UploadService implements UploadInterface {
-    public function upload(
-        string $local_disk_driver, 
-        string $local_path,
-        string $server_path,
-        string $filename
-    ) {
-        $xml = Storage::disk($local_disk_driver)->get($local_path.$filename);
+class UploadService extends ExchangerAbstract implements UploadInterface {
+    public function upload() {
+        $xml = Storage::disk($this->config->local_disk_driver)->get($this->config->local_path.$this->config->filename);
 
-        if (Storage::disk('sftp')->put($server_path.$filename, $xml)) {
+        if (Storage::disk('sftp')->put($this->config->server_path.$this->config->filename, $xml)) {
             return true;
         };
 

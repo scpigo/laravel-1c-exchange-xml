@@ -2,10 +2,8 @@
 
 namespace Scpigo\Laravel1cXml\Services\Interfaces;
 
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
+
 interface WriteInterface {
-    public function write(
-        string $local_disk_driver, 
-        string $local_path,
-        string $filename
-    );
+    public function write();
 }

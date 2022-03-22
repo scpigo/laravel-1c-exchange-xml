@@ -5,49 +5,48 @@ namespace Scpigo\Laravel1cXml\Components\Impls;
 use Scpigo\Laravel1cXml\Services\Interfaces\DownloadInterface;
 use Scpigo\Laravel1cXml\Services\Interfaces\UploadInterface;
 use Scpigo\Laravel1cXml\Components\Interfaces\XmlExchangerInterface;
+use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
 use Scpigo\Laravel1cXml\Services\Interfaces\WriteInterface;
+use Scpigo\Laravel1cXml\Services\Interfaces\GenerateInterface;
 
 class XmlExchanger implements XmlExchangerInterface {
     private DownloadInterface $downloadService;
     private UploadInterface $uploadService;
     private WriteInterface $writeService;
-    private string $exchanger;
+    private GenerateInterface $generateService;
+    private XmlExchangeConfigDto $config;
 
     public function __construct(
         DownloadInterface $downloadService, 
         UploadInterface $uploadService,
         WriteInterface $writeService, 
-        string $exchanger)
+        GenerateInterface $generateService,
+        XmlExchangeConfigDto $config)
     {
         $this->downloadService = $downloadService;
         $this->uploadService = $uploadService;
         $this->writeService = $writeService;
-        $this->exchanger = $exchanger;
+        $this->generateService = $generateService;
+        $this->config = $config;
     }
 
     public function download() {
-        return $this->downloadService->download(
-            config('1c.exchangers.'. $this->exchanger .'.local_disk_driver'),
-            config('1c.exchangers.'. $this->exchanger .'.local_path'),
-            config('1c.exchangers.'. $this->exchanger .'.server_path'),
-            config('1c.exchangers.'. $this->exchanger .'.filename')
-        );
+        $this->downloadService->setConfig($this->config);
+        return $this->downloadService->download();
     }
 
     public function upload() {
-        return $this->uploadService->upload(
-            config('1c.exchangers.'. $this->exchanger .'.local_disk_driver'),
-            config('1c.exchangers.'. $this->exchanger .'.local_path'),
-            config('1c.exchangers.'. $this->exchanger .'.server_path'),
-            config('1c.exchangers.'. $this->exchanger .'.filename')
-        );
+        $this->uploadService->setConfig($this->config);
+        return $this->uploadService->upload();
     }
 
     public function write() {
-        return $this->writeService->write(
-            config('1c.exchangers.'. $this->exchanger .'.local_disk_driver'),
-            config('1c.exchangers.'. $this->exchanger .'.local_path'),
-            config('1c.exchangers.'. $this->exchanger .'.filename')
-        );
+        $this->writeService->setConfig($this->config);
+        return $this->writeService->write();
+    }
+
+    public function generate() {
+        $this->generateService->setConfig($this->config);
+        return $this->generateService->generate();
     }
 }
