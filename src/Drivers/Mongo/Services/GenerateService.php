@@ -3,7 +3,6 @@
 namespace Scpigo\Laravel1cXml\Drivers\Mongo\Services;
 
 use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Read\OrderXmlTransformer;
-use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
 use Scpigo\Laravel1cXml\Helpers\XmlExchangeFields;
 use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\GenerateInterface;

@@ -6,7 +6,7 @@ use Scpigo\Laravel1cXml\Components\Interfaces\XmlExchangerInterface;
 use Scpigo\Laravel1cXml\Factories\XmlExchangeConfigFactory;
 
 class XmlExchangeManager {
-    public function exchanger($name = null) {
+    public function exchanger(string $name = null) {
         if (is_null($name)) $name = config('1c.default');
 
         $config = XmlExchangeConfigFactory::getExchangerByName($name);

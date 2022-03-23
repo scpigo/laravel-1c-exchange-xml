@@ -12,9 +12,9 @@ use Scpigo\Laravel1cXml\Jobs\WriteDBJob;
 use Scpigo\Laravel1cXml\Jobs\DownloadXmlJob;
 use Scpigo\Laravel1cXml\Jobs\UploadXmlJob;
 
-use Scpigo\Laravel1cXml\Services\Impls\Post\DownloadService as RequestDownloadService;
+use Scpigo\Laravel1cXml\Services\Impls\Http\DownloadService as RequestDownloadService;
 use Scpigo\Laravel1cXml\Services\Impls\Sftp\DownloadService as SftpDownloadService;
-use Scpigo\Laravel1cXml\Services\Impls\Post\UploadService as RequestUploadService;
+use Scpigo\Laravel1cXml\Services\Impls\Http\UploadService as RequestUploadService;
 use Scpigo\Laravel1cXml\Services\Impls\Sftp\UploadService as SftpUploadService;
 
 use Scpigo\Laravel1cXml\Drivers\Mongo\Services\WriteService as MongoWriteService;
@@ -51,10 +51,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
     public function register() 
     {
-        $this->app->alias(RequestDownloadService::class, 'download_post');
+        $this->app->alias(RequestDownloadService::class, 'download_http');
         $this->app->alias(SftpDownloadService::class, 'download_sftp');
 
-        $this->app->alias(RequestUploadService::class, 'upload_post');
+        $this->app->alias(RequestUploadService::class, 'upload_http');
         $this->app->alias(SftpUploadService::class, 'upload_sftp');
 
         $this->app->alias(MongoWriteService::class, 'write_mongo');

@@ -3,12 +3,12 @@
     "description": "Package for maintaining xml file exchange between laravel and 1C",
     "type": "library",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.4",
         "laravel/framework": "^8.0",
         "mtownsend/xml-to-array": "^2.0",
         "spatie/array-to-xml": "^2.16",
+        "scpigo/laravel-core": "@dev",
         "scpigo/laravel-system-job": "@dev",
-        "scpigo/core": "@dev",
         "spatie/laravel-fractal": "^5.8"
     },
     "autoload": {
@@ -29,7 +29,7 @@
         },
         {
             "type": "path",
-            "url": "packages/scpigo/core"
+            "url": "packages/scpigo/laravel-core"
         }
     ]
 

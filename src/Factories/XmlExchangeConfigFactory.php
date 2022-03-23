@@ -2,9 +2,8 @@
 
 namespace Scpigo\Laravel1cXml\Factories;
 
-use Illuminate\Support\Arr;
 use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
-use Scpigo\Core\Factory\DtoFactory;
+use Scpigo\LaravelCore\Factory\DtoFactory;
 
 class XmlExchangeConfigFactory {
     public static function getExchangerByName(string $name) {

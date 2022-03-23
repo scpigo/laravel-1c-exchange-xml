@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Storage;
 use Mtownsend\XmlToArray\XmlToArray;
 use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write\OrderListTransformer;
 use Scpigo\Laravel1cXml\Drivers\Mongo\Transformers\Write\OrderModelTransformer;
-use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
 use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\WriteInterface;
 use Spatie\Fractal\Facades\Fractal;

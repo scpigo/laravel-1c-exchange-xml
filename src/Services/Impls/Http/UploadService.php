@@ -1,10 +1,9 @@
 <?php
 
-namespace Scpigo\Laravel1cXml\Services\Impls\Post;
+namespace Scpigo\Laravel1cXml\Services\Impls\Http;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
-use Scpigo\Laravel1cXml\Dto\XmlExchangeConfigDto;
 use Scpigo\Laravel1cXml\Services\Impls\ExchangerAbstract;
 use Scpigo\Laravel1cXml\Services\Interfaces\UploadInterface;
 
