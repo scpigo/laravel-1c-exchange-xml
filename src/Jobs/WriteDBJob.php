@@ -16,6 +16,6 @@ class WriteDBJob extends SystemJobAbstract
     {
         $manager = new XmlExchangeManager;
 
-        $manager->exchanger('orders')->write();
+        $manager->exchanger('orders_sftp')->write();
     }
 }

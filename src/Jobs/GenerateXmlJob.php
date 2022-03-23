@@ -16,6 +16,6 @@ class GenerateXmlJob extends SystemJobAbstract
     {
         $manager = new XmlExchangeManager;
 
-        $manager->exchanger('orders')->generate();
+        $manager->exchanger('orders_sftp')->generate();
     }
 }

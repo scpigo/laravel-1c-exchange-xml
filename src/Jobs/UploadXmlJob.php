@@ -16,6 +16,6 @@ class UploadXmlJob extends SystemJobAbstract
     {
         $manager = new XmlExchangeManager;
 
-        $manager->exchanger('orders')->upload();
+        $manager->exchanger('orders_sftp')->upload();
     }
 }

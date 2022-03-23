@@ -16,6 +16,6 @@ class DownloadXmlJob extends SystemJobAbstract
     {
         $manager = new XmlExchangeManager;
 
-        $manager->exchanger('orders')->download();
+        $manager->exchanger('orders_http')->download();
     }
 }
